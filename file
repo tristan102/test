@@ -45,13 +45,13 @@ while choice != 'q':
         poption = input("enter your choice")
         if poption == "p":
             userpassword = input("password : ")
+            record = ("username userpassword")
             file = open("accounts.txt", "a")
             file.write(record)
+
     else:
         import random
         pword_length = 10
         pword_length = int(pword_length)
         symbols_to_use = "abcdefghijk=lmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-
-
 
