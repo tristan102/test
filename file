@@ -13,17 +13,15 @@ while choice != 'q':
     if choice.lower() == 'l':
         print("Login Menu")
         username = input("enter your username")
-        username = input("enter your password")
+        userpassword = input("enter your password")
         file = open("accounts.txt")
         all_users = file.read()
         all_users = all_users.split()
         if username in all_users:
             position = all_users.index(username)
             position = position+1
-            if all_users[position] == passwords:
+            if all_users[position] == userpassword:
                 print ("You are now logged in")
-            else:
-                print("incorrect username or password")
         else:
             print("incorrect username or password")
 
@@ -37,11 +35,9 @@ while choice != 'q':
 
     elif choice.lower() == 'q':
         print("See you later")
-    else:
-        print("Error")
 
 
-    if choice.upper() == "r":
+    if choice.lower() == "r":
         print("register menu")
         username = input("enter a username")
         print("enter a password or generate one")
@@ -56,4 +52,6 @@ while choice != 'q':
         pword_length = 10
         pword_length = int(pword_length)
         symbols_to_use = "abcdefghijk=lmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+
+
 
