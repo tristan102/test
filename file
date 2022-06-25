@@ -44,9 +44,11 @@ while choice != 'q':
         print("G - generate or P enter password")
         poption = input("enter your choice")
         if poption == "p":
-            userpassword = input("password : ")
-            record = ("username userpassword")
-            file = open("accounts.txt", "a")
+           userpassword = input("password : ")
+            
+            record = "accounts.txt"
+
+            file = open("accounts.txt"", "a")
             file.write(record)
 
     else:
