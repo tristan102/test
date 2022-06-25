@@ -45,9 +45,11 @@ while choice != 'q':
         poption = input("enter your choice")
         if poption == "p":
            userpassword = input("password : ")
-            record = "accounts.txt"
-            file = open("accounts.txt"", "a")
-            file.write(record)
+           record = username + userpassword
+           record = "accounts.txt"
+           file = open("accounts.txt")
+           file.write(record)
+           print("account created sucessfully")
 
     else:
         import random
