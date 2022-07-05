@@ -1,5 +1,9 @@
-choice = " "
-while choice != 'q':
+userchoice = " "
+choices = ("")
+username = ""
+userpassword = ""
+#print menu
+while userchoice.lower() != "q":
     print("***********************************************")
     print("*                 Main Menu                   *")
     print("*           Q - Quit                          *")
@@ -8,52 +12,66 @@ while choice != 'q':
     print("*           R - Register                      *")
     print("***********************************************")
 
-    choice = input("Enter your choice : ")
-
-    if choice.lower() == 'l':
-        print("Login Menu")
-        username = input("enter your username")
-        userpassword = input("enter your password")
-        file = open("accounts.txt")
-        all_users = file.read()
-        all_users = all_users.split()
-        if username in all_users:
-            position = all_users.index(username)
-            position = position+1
-            if all_users[position] == userpassword:
-                print ("You are now logged in")
-        else:
-            print("incorrect username or password")
-
-
-    if choice.lower() =='v':
+    userchoice = input("Enter your choice : ")
+#view
+    if userchoice == "v" or userchoice == "V":
         print("View File Contents")
         file = open("accounts.txt", "r")
-        fileContents = file.read()
-        print(fileContents)
+        for line in file:
+                print(line)
         file.close()
 
-    elif choice.lower() == 'q':
+#login
+    elif userchoice == "l" or userchoice == "L":
+        username = input("enter the username : ")
+        password = input("enter the password : ")
+        file = open("accounts.txt", "r")
+        alluserss = file.read()
+        alluserss = alluserss.split()
+        if username in alluserss:
+            position = alluserss.index(username)
+            position = position + 1
+            if alluserss[position] == password:
+                print("Successfully logged in")
+            else:
+                print("your username or password is incorrect: ")
+        else:
+            print("your username or password is incorrect: ")
+
+    if userchoice.upper() == 'v':
+        print("View File Contents")
+        file = open("accounts.txt", "r")
+        for line in file:
+            print(line)
+        file.close()
+
+    elif userchoice.upper() == 'q':
         print("See you later")
 
 
-    if choice.lower() == "r":
-        print("register menu")
-        username = input("enter a username")
-        print("enter a password or generate one")
-        print("G - generate or P enter password")
-        poption = input("enter your choice")
-        if poption == "p":
-           userpassword = input("password : ")
-           record = username + userpassword
-           record = "accounts.txt"
-           file = open("accounts.txt")
-           file.write(record)
-           print("account created sucessfully")
+#register
+    username = input("enter a username: ")
+    file = open("accounts.txt", "r")
+    users = file.read()
+    if username in users:
+        print("username is already in use, please use another one: ")
+        file.close()
 
     else:
-        import random
-        pword_length = 10
-        pword_length = int(pword_length)
-        symbols_to_use = "abcdefghijk=lmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+        print("would you like to ")
+        print("A use your own password or ")
+        print("B generate a password ")
+    choices = input("enter your choice")
 
+    if choices.upper () =="A":
+        password = input("enter a password: ")
+        with open("accounts.txt", "a") as f:
+            f.write(username + ' ' + password + '\n')
+            print("registration successfull")
+
+#quit
+        if userchoice == "q" or userchoice == "Q":
+            print("quit")
+        else:
+            print("You must only select either R,L,V or Q")
+            print("Please try again")
